@@ -47,6 +47,16 @@ Die Tests werden in einer isolierten Umgebung durchgeführt, um sicherzustellen,
 
 ---
 
+## Continuous Integration (CI)
+
+Wir setzen GitHub Actions ein, um automatisierte Tests in unserer CI-Pipeline zu integrieren:
+
+1. **Build-Check**: Stellt sicher, dass das Projekt erfolgreich kompiliert wird.
+2. **Test-Check**: Führt alle Unit-, Integrations- und End-to-End-Tests aus.
+3. **Code Coverage Report**: Überprüft die Testabdeckung und stellt sicher, dass kritische Bereiche abgedeckt sind.
+
+---
+
 ## Ziele
 
 - **Qualitätssicherung**: Fehler frühzeitig erkennen und beheben.
