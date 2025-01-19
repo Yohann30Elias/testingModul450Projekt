@@ -24,6 +24,10 @@ Ein Informatik-Projekt im Modul 450 (Testing), das den Einsatz von Softwaretests
 npm test a
 ```
 
+### Postman-Tests
+![image](https://github.com/user-attachments/assets/f7077f9e-31b9-48c0-a6f2-a1f1b773a6df)
+
+
 ## Autoren
 
 - **Gian Oechslin**
