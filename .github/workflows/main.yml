@@ -1,0 +1,35 @@
+stages:
+  - install
+  - test
+
+variables:
+  NODE_ENV: test
+  NODE_VERSION: "16"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+before_script:
+  - echo "Using Node.js version $NODE_VERSION"
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+
+install_dependencies:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1h
+
+test:
+  stage: test
+  script:
+    - npm test
+  artifacts:
+    reports:
+      junit: test-results.xml
+    expire_in: 1h
