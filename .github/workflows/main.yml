@@ -1,35 +1,28 @@
-stages:
-  - install
-  - test
+name: CI Pipeline
 
-variables:
-  NODE_ENV: test
-  NODE_VERSION: "16"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-before_script:
-  - echo "Using Node.js version $NODE_VERSION"
-  - nvm install $NODE_VERSION
-  - nvm use $NODE_VERSION
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-install_dependencies:
-  stage: install
-  script:
-    - npm ci
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1h
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
 
-test:
-  stage: test
-  script:
-    - npm test
-  artifacts:
-    reports:
-      junit: test-results.xml
-    expire_in: 1h
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
